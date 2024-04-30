@@ -16,11 +16,24 @@ canvas.attr('width', width)
 let xScale;
 let yScale;
 
+let minYear;
+let maxYear;
+let numerOfYears = maxYear - minYear;
+
 let generateScales = () => {
+
+    minYear=d3.min(monthlyVariance, (item) => {
+        return item['year']
+    })
+    maxYear=d3.max(monthlyVariance, (item) => {
+        return item['year']
+    })
     xScale = d3.scaleLinear()
+                .domain([minYear, maxYear + 1 ]) 
                 .range([margin.left, width - margin.left - margin.right])
     yScale = d3.scaleTime()
-                .range([margin.left, height - margin.top - margin.bottom])            
+                .domain([new Date(0, 0, 0), new Date(0 ,12 ,0)]) //from january to december
+                .range([margin.left, height - margin.top])            
 
 }
 
@@ -44,30 +57,46 @@ let drawCells = () => {
                 }
             })
             .attr('data-year', (item) => {
-                return item
+                return item['year']
             })
             .attr('data-month', (item) => {
-                return item
+                return item['month'] - 1 //js month start from 0 to 11
             })
             .attr('data-temp', (item) => {
-                return item
+                return baseTemperature + item['variance']
+            })
+            .attr('height', (height - margin.top - margin.bottom)/12)
+            .attr('y', (item) => {
+                return yScale(new Date(0, item['month']-1, 0))
+            })
+            .attr('x', (item) => {
+                return xScale(item['year'])
+            })
+            .attr('width', (item) => {
+                numerOfYears = maxYear - minYear;
+                return (width - margin.left - margin.right) / numerOfYears;
             })
 
 }
 
 let drawAxes = () => {
+
     let xAxis = d3.axisBottom(xScale)
+                    .tickFormat(d3.format('d')) //show the year as integer
+
     let yAxis = d3.axisLeft(yScale)
+                    .tickFormat(d3.timeFormat('%B'))
 
     canvas.append('g')
             .call(xAxis)
             .attr('id', 'x-axis')
             .attr('transform', `translate(0, ${height - margin.top})`)
 
+
     canvas.append('g')
             .call(yAxis)
             .attr('id', 'y-axis')
-            .attr('transform', `translate(${margin.left}, ${margin.top})`)
+            .attr('transform', `translate(${margin.left}, 0)`)
 
 }
 
@@ -83,7 +112,10 @@ req.onload = () => {
     console.log(monthlyVariance);
 
     generateScales();
+   
     drawCells();
     drawAxes();
+    
+    
 };
 req.send();
