@@ -9,7 +9,26 @@
 <body>
     <h1 id="title">Monthly Global Land-Surface Temperature</h1>
     <div id="description">1753 - 2015: base temperature 8.66℃</div>
-   <svg id="canvas"></svg>
+    <svg id="canvas"></svg>
+    <svg id="legend" height="160">
+        <g>
+            <rect x='10' y='0' width ='40' height='40' fill="Crimson"></rect>
+            <text x='60' y='20'  fill="Black"> Variance of 1 or more</text>
+        </g>
+        <g>
+            <rect x='10' y='40' width ='40' height='40' fill="Orange"></rect>
+            <text x='60' y='60'  fill="Black"> Above average</text>
+        </g>
+        <g>
+            <rect x='10' y='80' width ='40' height='40' fill="LightSteelBlue"></rect>
+            <text x='60' y='100' fill="Black"> On or below average</text>
+        </g>
+        <g>
+            <rect x='10' y='120' width ='40' height='40' fill="SteelBlue"></rect>
+            <text x='60' y='140' fill="Black"> Variance of -1 or less</text>
+        </g>
+        
+    </svg>
     
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="script.js"></script>

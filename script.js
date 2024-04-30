@@ -85,7 +85,7 @@ let drawAxes = () => {
                     .tickFormat(d3.format('d')) //show the year as integer
 
     let yAxis = d3.axisLeft(yScale)
-                    .tickFormat(d3.timeFormat('%B'))
+                    .tickFormat(d3.timeFormat('%B')) //display full month name
 
     canvas.append('g')
             .call(xAxis)
