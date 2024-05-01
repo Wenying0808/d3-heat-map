@@ -7,15 +7,15 @@ body{
     align-items: center;
 }
 
-#tooltip{
-    margin:20px;
+.tooltip{
+    position: absolute;
     padding:10px;
     visibility: hidden;
     height: auto;
     width: auto;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.6);
     color:white;
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 #legend{

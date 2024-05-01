@@ -13,7 +13,10 @@ let canvas = d3.select("#canvas")
 canvas.attr('width', width)
         .attr('height', height)
 
-let tooltip = d3.select('#tooltip')
+
+const tooltip = d3.select('body')
+        .append("div")
+        .attr("class", "tooltip")
 
 
 let xScale;
@@ -96,14 +99,37 @@ let drawCells = () => {
                 tooltip.transition()
                         .style('visibility', 'visible')
 
+                //text inside tooltip
                 let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                tooltip.text(item['year'] + ' ' + monthName[item['month'] - 1 ] + ': ' + (baseTemperature + item['variance']) + '℃ ( variance of ' + item['variance'] + ')')
-                tooltip.attr('data-year', item['year'])
+                tooltip.text(item['year'] + ' ' + monthName[item['month'] - 1 ] + ': ' + (baseTemperature + item['variance']) + '℃ ( variance of ' + item['variance'] + ')');
+                tooltip.attr('data-year', item['year']);
+
+                //position of tooltip
+                let rectX = parseFloat(d3.select(this).attr('x'))+ margin.left; 
+                let rectY = parseFloat(d3.select(this).attr('y')) + margin.top; 
+                let rectWidth = parseFloat(d3.select(this).attr('width')); 
+                let rectHeight = parseFloat(d3.select(this).attr('height')); 
+                let tooltipX = rectX + rectWidth;
+                let tooltipY = rectY - rectHeight/2;
+                console.log("rectX", rectX);
+                console.log("rectWidth", rectWidth);
+                console.log("tooltipX", tooltipX);
+                console.log("rectY", rectY);
+                console.log("rectHeight", rectHeight);
+                console.log("tooltipY", tooltipY);
+
+                tooltip.style('left', tooltipX + 'px' )
+                        .style('top', tooltipY + 'px' )
+                
+
+    
 
                 //highlight the rect when hovering on it
                 d3.select(this)
                     .style("stroke", "black")
                     .style("stroke-width", 1);
+                
+
             })
             .on("mouseout", function() {
                 tooltip.transition()
