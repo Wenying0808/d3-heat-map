@@ -1,12 +1,23 @@
 body{
-    height:100%;
-    margin:30px;
+    min-height: 100%;
+    margin-top:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-h1{
-
+#tooltip{
+    margin:20px;
+    padding:10px;
+    visibility: hidden;
+    height: auto;
+    width: auto;
+    background-color: black;
+    color:white;
+    border-radius: 10px;
 }
 
 #legend{
-    
+    width:160px;
 }

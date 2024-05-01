@@ -9,24 +9,42 @@
 <body>
     <h1 id="title">Monthly Global Land-Surface Temperature</h1>
     <div id="description">1753 - 2015: base temperature 8.66℃</div>
+    <div id="tooltip"></div>
     <svg id="canvas"></svg>
     <svg id="legend" height="160">
         <g>
-            <rect x='10' y='0' width ='40' height='40' fill="Crimson"></rect>
-            <text x='60' y='20'  fill="Black"> Variance of 1 or more</text>
+            <rect x='10' y='10' width ='20' height='20' fill="rgb(69, 117, 180)"></rect>
+            <text x='20' y='50' fill="Black">-3</text>
         </g>
         <g>
-            <rect x='10' y='40' width ='40' height='40' fill="Orange"></rect>
-            <text x='60' y='60'  fill="Black"> Above average</text>
+            <rect x='30' y='10' width ='20' height='20' fill="rgb(116, 173, 209)"></rect>
+            <text x='40' y='50'  fill="Black">-2</text>
         </g>
         <g>
-            <rect x='10' y='80' width ='40' height='40' fill="LightSteelBlue"></rect>
-            <text x='60' y='100' fill="Black"> On or below average</text>
+            <rect x='50' y='10' width ='20' height='20' fill="rgb(171, 217, 233)"></rect>
+            <text x='60' y='50' fill="Black">-1</text>
         </g>
         <g>
-            <rect x='10' y='120' width ='40' height='40' fill="SteelBlue"></rect>
-            <text x='60' y='140' fill="Black"> Variance of -1 or less</text>
+            <rect x='70' y='10' width ='20' height='20' fill="rgb(224, 243, 248)"></rect>
+            <text x='86' y='50' fill="Black">0</text>
         </g>
+        <g>
+            <rect x='90' y='10' width ='20' height='20' fill="rgb(255, 255, 191)"></rect>
+            <text x='108' y='50' fill="Black">1</text>
+        </g>
+        <g>
+            <rect x='110' y='10' width ='20' height='20' fill="rgb(254, 224, 144)"></rect>
+            <text x='128' y='50' fill="Black">2</text>
+        </g>
+        <g>
+            <rect x='130' y='10' width ='20' height='20' fill="rgb(244, 109, 67)"></rect>
+            <text x='148' y='50' fill="Black">3</text>
+        </g>
+        <g>
+            <rect x='150' y='10' width ='20' height='20' fill="rgb(215, 48, 39)"></rect>
+            <text x='168' y='50' fill="Black"></text>
+        </g>
+
         
     </svg>
     
